@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import App from './apps/PlacesList';
+// import App from './apps/Subplaces';
+import "./css/Default.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('react-places')
+  // document.getElementById('react-subplaces')
 );
 
 // If you want your app to work offline and load faster, you can change
