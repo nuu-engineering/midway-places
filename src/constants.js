@@ -22,3 +22,8 @@ export const PEOPLE_ORG = [
   { value: 'Property Operations - General', display: 'Property Operations - General' },
   { value: 'Strategic Leasing &amp; Advisory', display: 'Strategic Leasing & Advisory' },
 ];
+
+export const NNP_NEWS = 'News';
+export const NNP_PUBS = 'Publications';
+export const NNP_STOR = 'Stories';
+export const NNP_AWRD = 'Awards';

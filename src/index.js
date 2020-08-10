@@ -4,8 +4,9 @@ import * as serviceWorker from './serviceWorker';
 
 // import App from './apps/PlacesList';
 // import App from './apps/Subplaces';
-import App from './apps/People';
-// import "./css/Default.css";
+// import App from './apps/People';
+import App from './apps/NewsAndPress';
+import "./css/Default.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +14,8 @@ ReactDOM.render(
   </React.StrictMode>,
   // document.getElementById('react-places')
   // document.getElementById('react-subplaces')
-  document.getElementById('react-people')
+  // document.getElementById('react-people')
+  document.getElementById('react-news-and-press')
 );
 
 // If you want your app to work offline and load faster, you can change
