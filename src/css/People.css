@@ -1,0 +1,24 @@
+.people-bio {
+  visibility: hidden;
+  opacity: 0;
+  transition: 
+    opacity 0.2s ease
+    visibility 0.2s 0s;
+}
+
+.people-bio.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease;
+}
+
+.fill-image.scalable-img {
+  transition: transform 0.3s ease;
+  transform: scale3d(1, 1, 1);
+  transform-style: preserve-3d;
+}
+
+.people-card:hover .fill-image.scalable-img,
+.people-card:focus .fill-image.scalable-img {
+  transform: scale3d(1.15, 1.15, 1);
+}
