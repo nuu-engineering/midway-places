@@ -1,13 +1,28 @@
 /* global places: false, BASE_URL: false */
 import React from 'react';
 import classnames from 'classnames';
-import { List, ListItem, Map, Tabs } from '../components';
+import { List, ListItem, Map, Tabs } from '../components/Places';
 import {
   PANEL, MAP, GMAPS, OFFICE,
   RETAIL, HOTEL, RESIDENCE,
 } from '../constants';
-import * as ASSET from '../assets-urls'; 
+import * as ASSET from '../assets-urls';
 import '../css/PlacesList.css';
+
+/**
+ * places = {
+ *    id: string,
+ *    key: string,
+ *    featured: boolean,
+ *    category: string,
+ *    name: string,
+ *    slug: string,
+ *    image: url,
+ *    address: string,
+ *    latitude: number,
+ *    longitude: number
+ * }[]
+ */
 
 function App() {
   const [showing, setShowing] = React.useState(PANEL);

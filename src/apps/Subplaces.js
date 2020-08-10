@@ -12,6 +12,18 @@ import averageGeolocation from '../utils/average-geolocation';
 
 import '../css/Subplaces.css';
 
+/**
+ * subplaces = {
+ *   name: string,
+ *   address: string,
+ *   category: RNB | ENTERTAIN | SHOP,
+ *   image: url,
+ *   key: string,
+ *   latitude: number,
+ *   longitude: number
+ * }[]
+ */
+
 function App() {
   const [map, setMap] = React.useState(null);
   const [filter, setFilter] = React.useState(null);
