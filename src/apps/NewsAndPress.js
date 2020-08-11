@@ -32,7 +32,7 @@ function App() {
   }
   return (
     <>
-      <Portal id='react-news-and-press-tabs' className='news-tabs'>
+      {/* <Portal id='react-news-and-press-tabs' className='news-tabs'>
         <>
           <div className="mr-4">
             <a href="/news/news-press" className="tab-link-news">News &amp; Press</a>
@@ -51,7 +51,7 @@ function App() {
             <div className={classnames("hr-full-1px", { "bg-orange": section === NNP_AWRD })}></div>
           </div>
         </>
-      </Portal>
+      </Portal> */}
       { children }
     </>
   );

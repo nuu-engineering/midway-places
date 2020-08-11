@@ -1,8 +1,8 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker, OverlayView } from '@react-google-maps/api';
-import averageGeolocation from '../utils/average-geolocation';
-import { mapStyle } from '../utils/map-options';
-import { MARKER } from '../assets-urls';
+import averageGeolocation from '../../utils/average-geolocation';
+import { mapStyle } from '../../utils/map-options';
+import { MARKER } from '../../assets-urls';
 import { t as typy } from 'typy';
 
 const Map = ({ list = [], apiKey, urlPrefix = '' }) => {
