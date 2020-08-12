@@ -55,7 +55,7 @@ const Tab = ({ reports, magazines }) => {
               <div className="row">
                 {
                   restMags.map((element) => (
-                    <div className="col-4 mb-5" onClick={() => setSelected(element.url)}>
+                    <div className="col-4 mb-5 mt-auto" onClick={() => setSelected(element.url)}>
                       <img
                         src={typy(element, 'image').safeString}
                         alt={typy(element, 'name').safeString}
@@ -159,7 +159,7 @@ const Tab = ({ reports, magazines }) => {
               <div className="row">
                 {
                   restReps.map((element) => (
-                    <div className="col-4 mb-5" onClick={() => setSelected(element.url)}>
+                    <div className="col-4 mb-5 mt-auto" onClick={() => setSelected(element.url)}>
                       <img
                         src={typy(element, 'image').safeString}
                         alt={typy(element, 'name').safeString}
