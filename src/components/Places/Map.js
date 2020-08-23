@@ -70,8 +70,8 @@ const Map = ({ list = [], apiKey, urlPrefix = '' }) => {
                 src={typy(selected, 'image').safeString}
                 alt={typy(selected, 'name').safeString}
               /> */}
-              <div className="place-image-container">
-                <img src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} className="full-image" />
+              <div className="place-image-wrap">
+                <div className="place-image-container" style={{ backgroundImage: `url("${typy(selected, 'image').safeString}")` }}></div>
               </div>
               <span className='map-overlay-name'>{typy(selected, 'name').safeString}</span>
               <span className='map-overlay-location'>{typy(selected, 'address').safeString}</span>
