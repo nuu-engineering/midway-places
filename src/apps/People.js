@@ -126,7 +126,7 @@ function App() {
                             <img
                               src={PERSON_EMPTY}
                               alt={typy(person, 'name').safeString}
-                              className="fill-image"
+                              className="person-image"
                             />
                           )
                           : null
@@ -137,7 +137,7 @@ function App() {
                             <img
                               src={typy(person, 'photo').safeString}
                               alt={typy(person, 'name').safeString}
-                              className="fill-image"
+                              className="person-image"
                             />
                           )
                           : null
@@ -148,7 +148,7 @@ function App() {
                             <img
                               src={typy(person, 'photo').safeString}
                               alt={typy(person, 'name').safeString}
-                              className="fill-image scalable-img"
+                              className="person-image scalable-img"
                             />
                           )
                           : null
