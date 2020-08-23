@@ -42,11 +42,19 @@
   width: 100%;
 }
 
-.places-list-item .full-image {
+.places-list-item .place-image-container {
   transition: transform 0.3s ease;
 }
 
-.places-list-item:hover .full-image,
-.places-list-item:focus .full-image {
+.places-list-item:hover .place-image-container,
+.places-list-item:focus .place-image-container {
   transform: scale(1.1, 1.1);
+}
+
+#react-places .w-tabs .w-tab-menu {
+  display: -webkit-box;  
+  display: -ms-flexbox;  
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-end;
 }
