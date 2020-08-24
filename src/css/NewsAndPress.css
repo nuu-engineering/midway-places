@@ -16,6 +16,7 @@
     opacity 0.3s ease,
     visibility 0.3s 0s linear;
   visibility: hidden;
+  z-index: 1000;
 }
 
 .iframe-portal.show {

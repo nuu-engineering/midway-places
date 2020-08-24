@@ -1,4 +1,4 @@
-/* global CURRENT_SECTION:false publications_reports:false publications_magazine:false */
+/* global CURRENT_SECTION:false, news_news:false publications_reports:false publications_magazine:false */
 import React from 'react';
 import classnames from 'classnames';
 import { t as typy } from 'typy';
@@ -15,16 +15,16 @@ function App() {
   let children = null;
   switch (section) {
     case NNP_NEWS:
-      children = null;
+      children = <NewsTab list={news_news} />;
       break;
     case NNP_PUBS:
       children = <PublicationsTab reports={publications_reports} magazines={publications_magazine} />;
       break;
     case NNP_STOR:
-      children = null;
+      children = <StoriesTab />;
       break;
     case NNP_AWRD:
-      children = null;
+      children = <AwardsTab />;
       break;
     default:
       children = null;
@@ -32,26 +32,26 @@ function App() {
   }
   return (
     <>
-      {/* <Portal id='react-news-and-press-tabs' className='news-tabs'>
+      <Portal id='react-news-and-press-tabs' className='news-tabs'>
         <>
           <div className="mr-4">
-            <a href="/news/news-press" className="tab-link-news">News &amp; Press</a>
+            <div onClick={() => setSection(NNP_NEWS)} className={classnames("tab-link-news", "cursor-pointer", { "w--current": section === NNP_NEWS })}>News &amp; Press</div>
             <div className={classnames("hr-full-1px", { "bg-orange": section === NNP_NEWS })}></div>
           </div>
           <div className="mr-4">
-            <a href="/news/publications" aria-current="page" className="tab-link-news w--current">Publications</a>
+            <div onClick={() => setSection(NNP_PUBS)} className={classnames("tab-link-news", "cursor-pointer", { "w--current": section === NNP_PUBS })}>Publications</div>
             <div className={classnames("hr-full-1px", { "bg-orange": section === NNP_PUBS })}></div>
           </div>
           <div className="mr-4">
-            <a href="/news/stories" className="tab-link-news">Stories</a>
+            <a href="/news/stories" className={classnames("tab-link-news", { "w--current": section === NNP_STOR })}>Stories</a>
             <div className={classnames("hr-full-1px", { "bg-orange": section === NNP_STOR })}></div>
           </div>
           <div>
-            <a href="/news/awards" className="tab-link-news">Awards</a>
+            <a href="/news/awards" className={classnames("tab-link-news", { "w--current": section === NNP_AWRD })}>Awards</a>
             <div className={classnames("hr-full-1px", { "bg-orange": section === NNP_AWRD })}></div>
           </div>
         </>
-      </Portal> */}
+      </Portal>
       { children }
     </>
   );
