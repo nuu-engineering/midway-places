@@ -1,15 +1,10 @@
-.place-subplaces-button {
-  cursor: pointer;
+.place-subplaces-button IMG {
+  height: 1.75rem;
+  width: 1.75rem;
 }
 
 .place-subplaces-button p {
   transition: color 0.3s ease;
-}
-
-.place-subplaces-button:hover p,
-.place-subplaces-button:focus p,
-.place-subplaces-button.selected p {
-  color: #073263;
 }
 
 .map-overlay {

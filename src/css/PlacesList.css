@@ -51,7 +51,7 @@
   transform: scale(1.1, 1.1);
 }
 
-#react-places .w-tabs .w-tab-menu {
+#react-places .w-tabs .toggle-view-tabs {
   display: -webkit-box;  
   display: -ms-flexbox;  
   display: -webkit-flex;

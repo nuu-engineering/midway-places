@@ -26,29 +26,22 @@ import '../css/Subplaces.css';
 
 function App() {
   const [map, setMap] = React.useState(null);
-  const [filter, setFilter] = React.useState(null);
   const [items, setItems] = React.useState(subplaces);
   const [selected, setSelected] = React.useState(null);
   const [center, setCenter] = React.useState({ lat: typy(PLACE, 'latitude').safeNumber, lng: typy(PLACE, 'longitude').safeNumber });
   
   React.useEffect(() => { 
     if (typy(subplaces).isArray) {
-      let itemsList = subplaces;
-      if (filter) itemsList = subplaces.filter(it => it.category === filter);
-      const [first] = itemsList;
-      setItems(itemsList);
+      const [first] = subplaces;
+      setItems(subplaces);
       setSelected(first);
-      if (itemsList.length) {
-        setCenter(itemsList.length === 1
+      if (subplaces.length) {
+        setCenter(subplaces.length === 1
           ? { lat: first.latitude, lng: first.longitude }
-          : averageGeolocation(itemsList));
+          : averageGeolocation(subplaces));
       }
     }
-  }, [subplaces, filter]);
-
-  const hasRNB = subplaces.some((item) => item.category === ENTERTAIN);
-  const hasENTERTAIN = subplaces.some((item) => item.category === SHOP);
-  const hasSHOP = subplaces.some((item) => item.category === SHOP);
+  }, [subplaces]);
 
   return (
     <div className="row">
@@ -81,7 +74,11 @@ function App() {
                     key={element.slug}
                     position={{ lat: element.latitude, lng: element.longitude }}
                     icon={{
-                      url: ASSET.MARKER,
+                      url: element.category ===  RNB
+                        ? ASSET.BAR_PIN
+                        : element.category === ENTERTAIN
+                          ? ASSET.TICKET_PIN
+                          : ASSET.BAG_PIN,
                       labelOrigin: { x: 12, y: -10},
                     }}
                     onClick={() => setSelected(element)}
@@ -94,9 +91,7 @@ function App() {
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
                 <div className='map-overlay'>
-                  <div className="place-image-container">
-                    <img src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} className="full-image" />
-                  </div>
+                  <div className="place-image-container" style={{ backgroundImage: `url("${typy(selected, 'image').safeString}")`}}></div>
                   {/* <img className='map-overlay-img' src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} /> */}
                   <span className='map-overlay-name'>{typy(selected, 'name').safeString}</span>
                   <span className='map-overlay-location'>{typy(selected, 'address').safeString}</span>
@@ -113,45 +108,21 @@ function App() {
         <div className="col-md-6 col-padding-0 col-xs-12 mb-8 mb-md-6">
           <p className="normal-text">{typy(PLACE, 'address').safeString}</p>
         </div>
-        { !hasRNB
-          ? null
-          : (
-            <div
-              className={classnames("row h-vertical-center mb-2 place-subplaces-button", { selected: filter === RNB })}
-              role='button'
-              onClick={() => { setFilter(filter === RNB ? null : RNB); }}
-            >
-              <img src={ASSET.COFFEE} alt="" className="mr-3" />
-              <p className="eyebrow-big text-steel text-uppercase">Restaurants &amp; Bars</p>
-            </div>
-          )
-        }
-        { !hasENTERTAIN
-          ? null
-          : (
-            <div
-              className={classnames("row h-vertical-center mb-2 place-subplaces-button", { selected: filter === ENTERTAIN })}
-              role='button'
-              onClick={() => { setFilter(filter === ENTERTAIN ? null : ENTERTAIN); }}
-            >
-              <img src={ASSET.THEATRE} alt="" className="mr-3" />
-              <p className="eyebrow-big text-steel text-uppercase">Entertainment</p>
-            </div>
-          )
-        }
-        { !hasSHOP
-          ? null
-          : (
-            <div
-              className={classnames("row h-vertical-center place-subplaces-button", { selected: filter === SHOP })}
-              role='button'
-              onClick={() => { setFilter(filter === SHOP ? null : SHOP); }}
-            >
-              <img src={ASSET.BAG} alt="" className="mr-3" />
-              <p className="eyebrow-big text-steel text-uppercase">Shopping</p>
-            </div>
-          )
-        }
+
+        <div className={classnames("row h-vertical-center mb-7 place-subplaces-button")}>
+          <img src={ASSET.BAR} alt="" className="mr-3 ml-2" />
+          <p className="eyebrow-big text-steel text-uppercase">Restaurants &amp; Bars</p>
+        </div>
+        
+        <div className={classnames("row h-vertical-center mb-7 place-subplaces-button")}>
+          <img src={ASSET.TICKET} alt="" className="mr-3 ml-2" />
+          <p className="eyebrow-big text-steel text-uppercase">Entertainment</p>
+        </div>
+        
+        <div className={classnames("row h-vertical-center place-subplaces-button")}>
+          <img src={ASSET.BAG} alt="" className="mr-3 ml-2" />
+          <p className="eyebrow-big text-steel text-uppercase">Shopping</p>
+        </div>
       </div>
     </div>
   );
