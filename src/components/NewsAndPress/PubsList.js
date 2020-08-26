@@ -1,23 +1,22 @@
+/* global PUBLICATIONS_LIMIT:false */
 import React from 'react';
 import classnames from 'classnames';
 import { t as typy } from 'typy';
 import range from '../../utils/range';
 
 const List = ({ datalist = [], className, setSelected }) => {
-  const LIMIT = 6;
-
   const [page, setPage] = React.useState(1);
   const [firstElement, setFirstElement] = React.useState([]);
   const [currentList, setCurrentList] = React.useState([]);
 
   React.useEffect(() => {
     const [first, ...rest] = datalist;
-    const temp = rest.filter((r, index) => index >= LIMIT * (page - 1) && index < LIMIT * page);
+    const temp = rest.filter((r, index) => index >= PUBLICATIONS_LIMIT * (page - 1) && index < PUBLICATIONS_LIMIT * page);
     setFirstElement(first);
     setCurrentList(temp);
   }, [datalist, page]);
 
-  const pageMax = Math.ceil((datalist.length - 1) / LIMIT);
+  const pageMax = Math.ceil((datalist.length - 1) / PUBLICATIONS_LIMIT);
   const dataPages = range(1, pageMax);
 
   return (
