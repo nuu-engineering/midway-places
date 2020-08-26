@@ -6,6 +6,7 @@ export const MARKER = 'https://nuu-group.sfo2.digitaloceanspaces.com/clients/mid
 export const CLOSE = 'https://assets.website-files.com/5ef63ffdc7baa16a250ac6b0/5f22a1d34aae4f64279e7087_close-grey.svg';
 export const PERSON_EMPTY = 'https://assets.website-files.com/5ef63ffdc7baa16a250ac6b0/5f2d79fd675b3a1427f6a473_Dummy.png';
 export const MORE = 'https://assets.website-files.com/5ef63ffdc7baa16a250ac6b0/5f0f3ca167b18bfadd99edd8_ico-plus.svg'
+export const INSTAGRAM_ICON = 'https://assets.website-files.com/5ef63ffdc7baa16a250ac6b0/5f0f3df6e2475b6b5209d96e_ico-instagram.svg'
 
 export const BAR = 'https://nuu-group.sfo2.cdn.digitaloceanspaces.com/clients/midway/icons/restaurant_bar.svg';
 export const TICKET = 'https://nuu-group.sfo2.cdn.digitaloceanspaces.com/clients/midway/icons/entertainment.svg';
