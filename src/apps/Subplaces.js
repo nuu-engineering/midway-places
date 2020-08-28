@@ -15,7 +15,8 @@ import '../css/Subplaces.css';
 /**
  * subplaces = {
  *   name: string,
- *   address: string,
+ *   city: string,
+ *   state: string,
  *   category: RNB | ENTERTAIN | SHOP,
  *   image: url,
  *   key: string,
@@ -94,7 +95,7 @@ function App() {
                   <div className="place-image-container" style={{ backgroundImage: `url("${typy(selected, 'image').safeString}")`}}></div>
                   {/* <img className='map-overlay-img' src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} /> */}
                   <span className='map-overlay-name'>{typy(selected, 'name').safeString}</span>
-                  <span className='map-overlay-location'>{typy(selected, 'address').safeString}</span>
+                  <span className='map-overlay-location'>{`${typy(selected, 'city').safeString}, ${typy(selected, 'state').safeString}`}</span>
                 </div>
               </OverlayView>
             </GoogleMap>
@@ -106,7 +107,14 @@ function App() {
         <p className="eyebrow-big text-steel mb-1 text-uppercase">The Neighborhood</p>
         <h3 className="h3 mb-8">{typy(PLACE, 'name').safeString}</h3>
         <div className="col-md-6 col-padding-0 col-xs-12 mb-8 mb-md-6">
-          <p className="normal-text">{typy(PLACE, 'address').safeString}</p>
+          <p className="normal-text">{typy(PLACE, 'street').safeString}</p>
+          <div className="row">
+            <p className="normal-text">{typy(PLACE, 'city').safeString}</p>
+            <p className="normal-text mr-1">,</p>
+            <p className="normal-text">{typy(PLACE, 'state').safeString}</p>
+            <p className="normal-text mr-1">,</p>
+            <p className="normal-text">{typy(PLACE, 'zip').safeNumber}</p>
+          </div>
         </div>
 
         <div className={classnames("row h-vertical-center mb-7 place-subplaces-button")}>

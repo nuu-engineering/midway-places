@@ -18,7 +18,8 @@ import '../css/PlacesList.css';
  *    name: string,
  *    slug: string,
  *    image: url,
- *    address: string,
+ *    city: string,
+ *    state: string,
  *    latitude: number,
  *    longitude: number
  * }[]
