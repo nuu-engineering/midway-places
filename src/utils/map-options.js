@@ -197,3 +197,15 @@ export const mapStyle = [
     ]
   }
 ];
+
+export const mapWithBusinessOptions = [
+  ...mapStyle,
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+]

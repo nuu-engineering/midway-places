@@ -1,8 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const Tabs = ({ sections, showing }) => {
+const Tabs = ({ defaultTab = '', sections, showing }) => {
   const [selected, setSelected] = React.useState(0);
+
+  React.useEffect(() => {
+    if (defaultTab) {
+      setSelected(sections.findIndex((e) => e.name === defaultTab));
+    }
+  }, []);
 
   return (
     <div data-duration-in="300" data-duration-out="100" className="w-tabs">

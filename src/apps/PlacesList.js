@@ -66,6 +66,7 @@ function App() {
           style={{ opacity: 1, transition: "opacity 300ms ease 0s" }}
         >
           <Tabs
+            defaultTab='Featured'
             showing={showing}
             sections={[
               { 
