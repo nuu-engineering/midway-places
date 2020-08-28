@@ -6,7 +6,7 @@ import { t as typy } from 'typy';
 import {
   GMAPS, RNB, ENTERTAIN, SHOP
 } from '../constants';
-import { mapStyle } from '../utils/map-options';
+import { mapWithBusinessOptions } from '../utils/map-options';
 import * as ASSET from '../assets-urls';
 import averageGeolocation from '../utils/average-geolocation';
 
@@ -27,22 +27,22 @@ import '../css/Subplaces.css';
 
 function App() {
   const [map, setMap] = React.useState(null);
-  const [items, setItems] = React.useState(subplaces);
-  const [selected, setSelected] = React.useState(null);
+  // const [items, setItems] = React.useState(subplaces);
+  // const [selected, setSelected] = React.useState(null);
   const [center, setCenter] = React.useState({ lat: typy(PLACE, 'latitude').safeNumber, lng: typy(PLACE, 'longitude').safeNumber });
   
-  React.useEffect(() => { 
-    if (typy(subplaces).isArray) {
-      const [first] = subplaces;
-      setItems(subplaces);
-      setSelected(first);
-      if (subplaces.length) {
-        setCenter(subplaces.length === 1
-          ? { lat: first.latitude, lng: first.longitude }
-          : averageGeolocation(subplaces));
-      }
-    }
-  }, [subplaces]);
+  // React.useEffect(() => { 
+  //   if (typy(subplaces).isArray) {
+  //     const [first] = subplaces;
+  //     setItems(subplaces);
+  //     setSelected(first);
+  //     if (subplaces.length) {
+  //       setCenter(subplaces.length === 1
+  //         ? { lat: first.latitude, lng: first.longitude }
+  //         : averageGeolocation(subplaces));
+  //     }
+  //   }
+  // }, [subplaces]);
 
   return (
     <div className="row">
@@ -56,20 +56,20 @@ function App() {
                 maxHeight: "90vh",
                 width: "100%"
               }}
-              options={{ styles: mapStyle, disableDefaultUI: true }}
-              zoom={10}
+              options={{ styles: mapWithBusinessOptions, disableDefaultUI: true }}
+              zoom={16}
               center={center}
               onLoad={React.useCallback((map) => {
-                const bounds = new window.google.maps.LatLngBounds();
-                items.forEach(element => {
-                  bounds.extend(new window.google.maps.LatLng(element.latitude, element.longitude));
-                })
-                map.fitBounds(bounds, { left: 80, right: 80, top: 200, bottom: 60 });
+                // const bounds = new window.google.maps.LatLngBounds();
+                // items.forEach(element => {
+                //   bounds.extend(new window.google.maps.LatLng(element.latitude, element.longitude));
+                // })
+                // map.fitBounds(bounds, { left: 80, right: 80, top: 200, bottom: 60 });
                 setMap(map)
               }, [])}
               onUnmount={React.useCallback((map) => { setMap(null); }, [])}
             >
-              {
+              {/* {
                 items.map((element) => (
                   <Marker
                     key={element.slug}
@@ -85,19 +85,19 @@ function App() {
                     onClick={() => setSelected(element)}
                   />
                 ))
-              }
+              } */}
 
-              <OverlayView
+              {/* <OverlayView
                 position={{lat: typy(selected, 'latitude').safeNumber, lng: typy(selected, 'longitude').safeNumber}}
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
                 <div className='map-overlay'>
                   <div className="place-image-container" style={{ backgroundImage: `url("${typy(selected, 'image').safeString}")`}}></div>
-                  {/* <img className='map-overlay-img' src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} /> */}
+                  <img className='map-overlay-img' src={typy(selected, 'image').safeString} alt={typy(selected, 'name').safeString} /> 
                   <span className='map-overlay-name'>{typy(selected, 'name').safeString}</span>
                   <span className='map-overlay-location'>{`${typy(selected, 'city').safeString}, ${typy(selected, 'state').safeString}`}</span>
                 </div>
-              </OverlayView>
+              </OverlayView> */}
             </GoogleMap>
           </LoadScript>
         </div>
