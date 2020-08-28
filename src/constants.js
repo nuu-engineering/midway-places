@@ -16,6 +16,7 @@ export const PEOPLE_ORG = [
   { value: 'Financial &amp; Team Operations', display: 'Financial & Team Operations' },
   { value: 'Investment &amp; Capital Markets', display: 'Investment & Capital Markets' },
   { value: 'Investment &amp; Development', display: 'Investment & Development' },
+  { value: 'Leadership', display: 'Leadership' },
   { value: 'Marketing &amp; Communications', display: 'Marketing & Communications' },
   { value: 'Midway Holdings', display: 'Midway Holdings' },
   { value: 'Property Operations', display: 'Property Operations' },

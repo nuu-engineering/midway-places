@@ -51,7 +51,11 @@ function App() {
     setPage(1);
   }, [search, filter]);
   
-  const filtered = searched.filter((person) => (filter ? person.org === filter : true));
+  const filtered = searched.filter((person) => (
+    filter
+      ? (filter === 'Leadership' && person.leader) || person.org === filter
+      : true
+  ));
   const showLoad = filtered.length > page * PEOPLE_LIMIT;
 
   return (
