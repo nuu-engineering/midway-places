@@ -13,7 +13,7 @@ const Tab = ({ list }) => {
   return (
     <>
       <div className='news-content'>
-        <div className="container-slim-sm display-md-none">
+        <div className="container-slim display-md-none">
           <div className="w-dyn-list">
             <div role="list" className="row mb-8 w-dyn-items">
 
@@ -27,15 +27,18 @@ const Tab = ({ list }) => {
 
                   return index < NEWS_LIMIT * page
                     ? (
-                      <div role="listitem" className="col-6 container-hover mb-5 w-dyn-item" key={slug}>
+                      <div role="listitem" className="col-6 container-hover mb-5 px-3 w-dyn-item" key={slug}>
                         <a
                           data-w-id="1e3532fe-3ef0-7d45-fef1-571d461e1c41"
                           href={externalURL || `${NEWS_BASE_URL}${slug}`}
                           className="news-link w-inline-block"
+                          target={externalURL ? '_blank' : undefined}
                         >
-                          <div
-                            style={{ backgroundImage: `url('${image}')` }}
-                            className="news-image-container">
+                          <div className='news-card-img-wrap'>
+                            <div
+                              style={{ backgroundImage: `url('${image}')` }}
+                              className="news-card-img">
+                            </div>
                           </div>
                           <p className="eyebrow-small text-steel mb-1">{`${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`}</p>
                           <p className="normal-text text-navy">{name}</p>

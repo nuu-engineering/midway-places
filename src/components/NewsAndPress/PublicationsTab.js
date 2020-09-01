@@ -15,12 +15,14 @@ const Tab = ({ reports, magazines }) => {
       </div>
 
       <PubsList
+        title='DISTRICT Magazine'
         datalist={magazines}
         setSelected={setSelected}
         className='publications'
       />
 
       <PubsList
+        title='Midway Annual Report'
         datalist={reports}
         setSelected={setSelected}
         className='annual-reports'

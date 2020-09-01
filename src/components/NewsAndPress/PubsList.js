@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { t as typy } from 'typy';
 import range from '../../utils/range';
 
-const List = ({ datalist = [], className, setSelected }) => {
+const List = ({ title, datalist = [], className, setSelected }) => {
   const [page, setPage] = React.useState(1);
   const [firstElement, setFirstElement] = React.useState([]);
   const [currentList, setCurrentList] = React.useState([]);
@@ -22,7 +22,7 @@ const List = ({ datalist = [], className, setSelected }) => {
   return (
     <div className={className}>
       <div className="container-slim">
-        <h3 className="h3 mb-7">Midway Annual Report</h3>
+        <h3 className="h3 mb-7">{title}</h3>
         <div className="row">
           <div className="col-5 col-padding-0 col-md-12 mb-md-8 cursor-pointer" onClick={() => setSelected(firstElement.url)}>
             <img
@@ -68,7 +68,7 @@ const List = ({ datalist = [], className, setSelected }) => {
                   {
                     dataPages.map((pageCurrent) => (
                       <p
-                        // key={pageCurrent}
+                        key={pageCurrent}
                         className={classnames(
                           "eyebrow mr-4", { 
                             "text-steel": pageCurrent !== page - 1,
