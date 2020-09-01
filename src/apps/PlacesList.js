@@ -4,17 +4,17 @@ import classnames from 'classnames';
 import { List, ListItem, Map, Tabs } from '../components/Places';
 import {
   PANEL, MAP, GMAPS, OFFICE,
-  RETAIL, HOTEL, RESIDENCE,
+  RETAIL, HOTEL, RESIDENCE, FEATURED,
 } from '../constants';
 import * as ASSET from '../assets-urls';
 import '../css/PlacesList.css';
 
 /**
  * places = {
- *    id: string,
  *    key: string,
  *    featured: boolean,
  *    category: string,
+ *    categories: string[],
  *    name: string,
  *    slug: string,
  *    image: url,
@@ -88,12 +88,12 @@ function App() {
                 name: 'Featured',
                 panel: (
                   <List>
-                    { places.filter((item) => item.featured).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
+                    { places.filter((item) => item.categories.includes(FEATURED)).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
                   </List>
                 ),
                 map: (
                   <Map
-                    list={places.filter((item) => item.featured)}
+                    list={places.filter((item) => item.categories.includes(FEATURED))}
                     apiKey={GMAPS}
                     urlPrefix={BASE_URL}
                   />
@@ -103,12 +103,12 @@ function App() {
                 name: OFFICE,
                 panel: (
                   <List>
-                    { places.filter((item) => item.category === OFFICE).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
+                    { places.filter((item) => item.categories.includes(OFFICE)).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
                   </List>
                 ),
                 map: (
                   <Map
-                    list={places.filter((item) => item.category === OFFICE)}
+                    list={places.filter((item) => item.categories.includes(OFFICE))}
                     apiKey={GMAPS}
                     urlPrefix={BASE_URL}
                   />
@@ -118,12 +118,12 @@ function App() {
                 name: RETAIL,
                 panel: (
                   <List>
-                    { places.filter((item) => item.category === RETAIL).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
+                    { places.filter((item) => item.categories.includes(RETAIL)).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
                   </List>
                 ),
                 map: (
                   <Map
-                    list={places.filter((item) => item.category === RETAIL)}
+                    list={places.filter((item) => item.categories.includes(RETAIL))}
                     apiKey={GMAPS}
                     urlPrefix={BASE_URL}
                   />
@@ -133,12 +133,12 @@ function App() {
                 name: HOTEL,
                 panel: (
                   <List>
-                    { places.filter((item) => item.category === HOTEL).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
+                    { places.filter((item) => item.categories.includes(HOTEL)).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
                   </List>
                 ),
                 map: (
                   <Map
-                    list={places.filter((item) => item.category === HOTEL)}
+                    list={places.filter((item) => item.categories.includes(HOTEL))}
                     apiKey={GMAPS}
                     urlPrefix={BASE_URL}
                   />
@@ -148,12 +148,12 @@ function App() {
                 name: RESIDENCE,
                 panel: (
                   <List>
-                    { places.filter((item) => item.category === RESIDENCE).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
+                    { places.filter((item) => item.categories.includes(RESIDENCE)).map((item) => (<ListItem {...item} urlPrefix={BASE_URL} />))}
                   </List>
                 ),
                 map: (
                   <Map
-                    list={places.filter((item) => item.category === RESIDENCE)}
+                    list={places.filter((item) => item.categories.includes(RESIDENCE))}
                     apiKey={GMAPS}
                     urlPrefix={BASE_URL}
                   />
