@@ -68,28 +68,38 @@ const Tab = ({ list }) => {
             </div>
           </div>
         </div>
-        <div className="news-content-mobile">
-          {
-            list.map((element, index) => (
-              index < NEWS_LIMIT * page
-              ? (
-                <>
-                  <div className="full-width mb-4 mb-xs-2">
-                    <img
-                      src={typy(element, 'image').safeString}
-                      alt={typy(element, 'name').safeString}
-                      className="full-image"
-                    />
-                  </div>
-                  <div className="container-slim mb-md-8 mb-xs-6">
-                    <p className="eyebrow-small text-steel mb-1">{typy(element, 'date').safeString}</p>
-                    <p className="normal-text">{typy(element, 'name').safeString}</p>
-                  </div>
-                </>
-              )
-              : null
-            ))
-          }
+
+        <div class="news-content-mobile w-dyn-list">
+          <div role="list" class="collection-list w-dyn-items">
+            {
+              list.map((element, index) => (
+                index < NEWS_LIMIT * page
+                ? (
+                  <a
+                    role="listitem"
+                    className="collection-item w-dyn-item"
+                    href={typy(element, 'externalURL').safeString || `${NEWS_BASE_URL}${typy(element, 'slug').safeString}`}
+                  >
+                    <div
+                      href={typy(element, 'externalURL').safeString || `${NEWS_BASE_URL}${typy(element, 'slug').safeString}`}
+                      className="full-width mb-4 mb-xs-2 w-inline-block"
+                    >
+                      <img
+                        src={typy(element, 'image').safeString}
+                        alt={typy(element, 'name').safeString}
+                        className="full-image"
+                      />
+                    </div>
+                    <div className="container-slim mb-md-8 mb-xs-6 text-navy w-inline-block">
+                      <p className="eyebrow-small text-steel mb-1">{typy(element, 'date').safeString}</p>
+                      <p className="normal-text">{typy(element, 'name').safeString}</p>
+                    </div>
+                  </a>
+                )
+                : null
+              ))
+            }
+          </div>
 
           <div className={classnames("h-horizontal-center pt-8 pt-md-4", { "display-none": !showLoad })}>
             <div
@@ -110,6 +120,7 @@ const Tab = ({ list }) => {
           </div>
         </div>
       </div>
+
       <Instagram />
     </>
   );
