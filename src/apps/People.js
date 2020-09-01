@@ -53,7 +53,7 @@ function App() {
   
   const filtered = searched.filter((person) => (
     filter
-      ? (filter === 'Leadership' && person.leader) || person.org === filter
+      ? (filter === 'Leadership Team' && person.leader) || person.org === filter
       : true
   ));
   const showLoad = filtered.length > page * PEOPLE_LIMIT;
@@ -113,7 +113,7 @@ function App() {
                         className="people-bio-img"
                       />
                       <div className="people-bio-info">
-                        <div className="people-bio-info-title">Midway Team Member</div>
+                        <div className="people-bio-info-title">{typy(person, 'job').safeString}</div>
                         <div className="people-bio-info-name">{typy(person, 'name').safeString}</div>
                         <img src={typy(person, 'photo').safeString} alt={typy(person, 'name').safeString} className="people-bio-mob-img" />
                         <div className="people-bio-info-desc">
