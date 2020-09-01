@@ -1,34 +1,18 @@
-/* global subplaces: false, PLACE: false */
+/* global PLACE: false */
 import React from 'react';
 import classnames from 'classnames';
-import { GoogleMap, LoadScript, Marker, OverlayView } from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { t as typy } from 'typy';
 import {
-  GMAPS, RNB, ENTERTAIN, SHOP
+  GMAPS,
 } from '../constants';
 import { mapWithBusinessOptions } from '../utils/map-options';
 import * as ASSET from '../assets-urls';
-import averageGeolocation from '../utils/average-geolocation';
 
 import '../css/Subplaces.css';
 
-/**
- * subplaces = {
- *   name: string,
- *   city: string,
- *   state: string,
- *   category: RNB | ENTERTAIN | SHOP,
- *   image: url,
- *   key: string,
- *   latitude: number,
- *   longitude: number
- * }[]
- */
-
 function App() {
   const [map, setMap] = React.useState(null);
-  // const [items, setItems] = React.useState(subplaces);
-  // const [selected, setSelected] = React.useState(null);
   const [center, setCenter] = React.useState({ lat: typy(PLACE, 'latitude').safeNumber, lng: typy(PLACE, 'longitude').safeNumber });
   
   // React.useEffect(() => { 
