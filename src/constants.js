@@ -15,7 +15,8 @@ export const SHOP = 'Shopping';
 export const PEOPLE_ORG = [
   { value: '', display: 'Filter by...' },
   { value: 'Financial Operations', display: 'Financial Operations' },
-  { value: 'Investment + Capital Markets', display: 'Investment + Capital Markets' },
+  { value: 'In Memory', display: 'In Memory' },
+  { value: 'Investment Management', display: 'Investment Management' },
   { value: 'Investment + Development', display: 'Investment + Development' },
   { value: 'Leadership Team', display: 'Leadership Team' },
   { value: 'Marketing + Communications', display: 'Marketing + Communications' },

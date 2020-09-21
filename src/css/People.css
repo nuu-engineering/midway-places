@@ -1,3 +1,31 @@
+.filters-row input,
+.filters-row select {
+  width: calc(25% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom-color: #f27630;
+}
+
+@media screen and (max-width: 991px) {
+  .filters-row {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .filters-row input,
+  .filters-row select {
+    margin-bottom: 2rem;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .filters-row input,
+  .filters-row select {
+    width: 90%;
+  }
+}
+
 .people-bio {
   visibility: hidden;
   opacity: 0;

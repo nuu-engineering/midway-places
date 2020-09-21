@@ -53,18 +53,19 @@ function App() {
   
   const filtered = searched.filter((person) => (
     filter
-      ? (filter === 'Leadership Team' && person.leader) || person.org === filter
-      : true
+      ? person.org === filter ||
+        (filter === 'Leadership Team' && person.leader) ||
+        (filter === 'In Memory' && person.inmemory) 
+      : !person.inmemory
   ));
   const showLoad = filtered.length > page * PEOPLE_LIMIT;
 
   return (
     <div className="container-slim">
-      <div className='row'>
+      <div className='row filters-row'>
         <input
           type="text"
           className="input mb-8 w-input"
-          style={{ width: 'calc(25% - 20px)', marginLeft: 10, marginRight: 10, borderBottomColor: '#f27630'}}
           maxLength={30}
           name="name"
           placeholder="Search by name"
@@ -73,7 +74,6 @@ function App() {
         <select
           type="text"
           className="select mb-8 w-select"
-          style={{ width: 'calc(25% - 20px)', marginLeft: 10, marginRight: 10, borderBottomColor: '#f27630'}}
           maxLength={30}
           name="name"
           placeholder="Search by name"
