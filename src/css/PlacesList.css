@@ -58,3 +58,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+#react-places .w-tabs .toggle-view-tabs .tab-link {
+  display: flex;
+  padding: 1rem;
+}

@@ -107,8 +107,12 @@ const List = ({ title, datalist = [], className, setSelected }) => {
           <div className="publications-md">
             <div className="publications-container">
               {
-                datalist.map((element) => (
-                  <div className="publication-card" key={typy(element, 'slug').safeString}>
+                currentList.map((element) => (
+                  <div
+                    className="publication-card"
+                    key={typy(element, 'slug').safeString}
+                    onClick={() => setSelected(element.url)}
+                  >
                     <div className='publication-img' style={{ backgroundImage: `url("${typy(element, 'image').safeString}")`}} />
                     <p>{typy(element, 'name').safeString.replace(typy(element, 'year').safeNumber, '')}</p>
                     <p className="eyebrow-small text-steel">{typy(element, 'year').safeNumber}</p>
