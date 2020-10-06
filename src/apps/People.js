@@ -2,11 +2,14 @@
 import React from 'react';
 import classnames from 'classnames';
 import Fuse from 'fuse.js';
+import { SimpleImg } from 'react-simple-img';
 import { t as typy } from 'typy';
+
 import '../css/People.css';
 import { debounce } from '../utils/debounce';
 import { CLOSE, MORE, PERSON_EMPTY } from '../assets-urls';
 import { PEOPLE_ORG } from '../constants';
+require('intersection-observer');
 
 const fuse_options = {
   shouldSort: true,
@@ -41,6 +44,7 @@ function App() {
   const [search, setSearch] = React.useState('');
   const [filter, setFilter] = React.useState('');
   const [searched, setSearched] = React.useState(people);
+  const loadMoreRef = React.useRef(null);
   
   React.useEffect(() => {
     if (search) debouncedSearch(setSearched, search);
@@ -115,7 +119,11 @@ function App() {
                       <div className="people-bio-info">
                         <div className="people-bio-info-title">{typy(person, 'job').safeString}</div>
                         <div className="people-bio-info-name">{typy(person, 'name').safeString}</div>
-                        <img src={typy(person, 'photo').safeString} alt={typy(person, 'name').safeString} className="people-bio-mob-img" />
+                        <img 
+                          className="people-bio-mob-img"
+                          src={typy(person, 'photo').safeString}
+                          alt={typy(person, 'name').safeString} 
+                         />
                         <div className="people-bio-info-desc">
                           {typy(person, 'description').safeString}
                         </div>
@@ -127,10 +135,11 @@ function App() {
                       {
                         typy(person, 'photo').isEmptyString 
                           ? (
-                            <img
+                            <SimpleImg
+                              className="person-image"
+                              style={{ position: 'absolute' }}
                               src={PERSON_EMPTY}
                               alt={typy(person, 'name').safeString}
-                              className="person-image"
                             />
                           )
                           : null
@@ -138,10 +147,11 @@ function App() {
                       {
                         !typy(person, 'photo').isEmptyString && typy(person, 'description').isEmptyString
                           ? (
-                            <img
+                            <SimpleImg
+                              className="person-image"
+                              style={{ position: 'absolute' }}
                               src={typy(person, 'photo').safeString}
                               alt={typy(person, 'name').safeString}
-                              className="person-image"
                             />
                           )
                           : null
@@ -149,17 +159,18 @@ function App() {
                       {
                         !typy(person, 'photo').isEmptyString && !typy(person, 'description').isEmptyString
                           ? (
-                            <img
+                            <SimpleImg
+                              className="person-image scalable-img"
+                              style={{ position: 'absolute' }}
                               src={typy(person, 'photo').safeString}
                               alt={typy(person, 'name').safeString}
-                              className="person-image scalable-img"
                             />
                           )
                           : null
                       }
                     </div>
                   </div>
-                  <div className="row">
+                  <div className="row no-wrap">
                     <div className="col-10 col-padding-0">
                       <p className="normal-text normal-height">{typy(person, 'name').safeString}</p>
                       <p className="eyebrow-small text-uppercase text-steel">{typy(person, 'job').safeString}</p>
@@ -188,7 +199,10 @@ function App() {
         </div>
       </div>
 
-      <div className={classnames("h-horizontal-center pt-8", { "display-none": !showLoad })}>
+      <div
+        className={classnames("h-horizontal-center pt-8", { "display-none": !showLoad })}
+        ref={loadMoreRef}
+      >
         <div
           className="btn-text text-navy w-inline-block"
           role="button"
