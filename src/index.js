@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-import App from './apps/PlacesList';
+// import App from './apps/PlacesList';
 // import App from './apps/Subplaces';
-// import App from './apps/People';
+import App from './apps/People';
 // import App from './apps/NewsAndPress';
-// import "./css/Default.css";
+import "./css/Default.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('react-places')
+  // document.getElementById('react-places')
   // document.getElementById('react-subplaces')
-  // document.getElementById('react-people')
+  document.getElementById('react-people')
   // document.getElementById('react-news-and-press')
 );
 

@@ -53,7 +53,7 @@ function App() {
   
   const filtered = searched.filter((person) => (
     filter
-      ? person.org === filter ||
+      ? (person.org === filter && !person.inmemory) ||
         (filter === 'Leadership Team' && person.leader) ||
         (filter === 'In Memory' && person.inmemory) 
       : !person.inmemory
@@ -171,6 +171,7 @@ function App() {
                           <a 
                             href={typy(person, 'linkedIn').safeString}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="linkedin-circle w-inline-block"
                             onClick={(ev) => ev.stopPropagation() }
                           >
