@@ -3,6 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Fuse from 'fuse.js';
 import { SimpleImg } from 'react-simple-img';
+import { useInView } from 'react-hook-inview';
 import { t as typy } from 'typy';
 
 import '../css/People.css';
@@ -44,7 +45,13 @@ function App() {
   const [search, setSearch] = React.useState('');
   const [filter, setFilter] = React.useState('');
   const [searched, setSearched] = React.useState(people);
-  const loadMoreRef = React.useRef(null);
+  const loadMoreCallback = (ev) => {
+    setPage(page + 1);
+  }
+  const [loadMoreRef] = useInView({
+    threshold: 1,
+    onEnter: loadMoreCallback,
+  }, [page])
   
   React.useEffect(() => {
     if (search) debouncedSearch(setSearched, search);
@@ -209,7 +216,7 @@ function App() {
         <div
           className="btn-text text-navy w-inline-block"
           role="button"
-          onClick={(ev) => { ev.preventDefault(); setPage(page + 1) }}
+          onClick={loadMoreCallback}
           // onClick={(ev) => { ev.preventDefault(); setSearch("SD"); }}
         >
           <div className="row h-vertical-center">
