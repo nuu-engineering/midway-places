@@ -150,8 +150,11 @@ function App() {
                             <SimpleImg
                               className="person-image"
                               style={{ position: 'absolute' }}
-                              src={typy(person, 'photo').safeString}
                               alt={typy(person, 'name').safeString}
+                              src={typy(person, 'photo').safeString}
+                              // srcSet={`${typy(person, 'photo').safeString.replaceAll('%20','%2520').replace(/(.*)\.(.*?)$/, "$1")}-p-500.jpeg 500vw, ${typy(person, 'photo').safeString} 688vw`}
+                              // src={`https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%20Garza%20-%202020%20(smaller).jpg`}
+                              // srcSet={`https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%2520Garza%2520-%25202020%2520(smaller)-p-500.jpeg 500w, https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%20Garza%20-%202020%20(smaller).jpg 688w`}
                             />
                           )
                           : null
