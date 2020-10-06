@@ -37,7 +37,7 @@ const List = ({ title, datalist = [], className, setSelected }) => {
               {
                 currentList.map((element) => (
                   <div
-                    className="col-4 mb-5 mt-auto cursor-pointer"
+                    className="col-4 mb-5 cursor-pointer"
                     onClick={() => setSelected(element.url)}
                     key={typy(element, 'slug').safeString}
                   >
