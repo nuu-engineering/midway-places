@@ -27,14 +27,22 @@
 }
 
 .people-bio {
-  visibility: hidden;
-  opacity: 0;
   transition: 
-    opacity 0.2s ease
+    opacity 0.2s ease,
     visibility 0.2s 0s;
 }
 
+.people-bio.hide {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
 .people-bio.show {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.2s ease;

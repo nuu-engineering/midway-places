@@ -27,7 +27,11 @@ const Tab = ({ list }) => {
 
                   return index < NEWS_LIMIT * page
                     ? (
-                      <div role="listitem" className="col-6 container-hover mb-5 px-3 w-dyn-item" key={slug}>
+                      <div
+                        role="listitem"
+                        className="col-6 container-hover mb-5 px-3 w-dyn-item"
+                        key={slug}
+                      >
                         <a
                           data-w-id="1e3532fe-3ef0-7d45-fef1-571d461e1c41"
                           href={externalURL || `${NEWS_BASE_URL}${slug}`}
@@ -69,8 +73,8 @@ const Tab = ({ list }) => {
           </div>
         </div>
 
-        <div class="news-content-mobile w-dyn-list">
-          <div role="list" class="collection-list w-dyn-items">
+        <div className="news-content-mobile w-dyn-list">
+          <div role="list" className="collection-list w-dyn-items">
             {
               list.map((element, index) => (
                 index < NEWS_LIMIT * page
@@ -79,7 +83,8 @@ const Tab = ({ list }) => {
                     role="listitem"
                     className="collection-item w-dyn-item"
                     href={typy(element, 'externalURL').safeString || `${NEWS_BASE_URL}${typy(element, 'slug').safeString}`}
-                  >
+                    key={typy(element, 'slug').safeString}
+                    >
                     <div
                       href={typy(element, 'externalURL').safeString || `${NEWS_BASE_URL}${typy(element, 'slug').safeString}`}
                       className="full-width mb-4 mb-xs-2 w-inline-block"

@@ -9,42 +9,41 @@ const Instagram = () => {
   const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
-    const fetchImages = async () => {
-      let imagesData = await axios.get(`https://www.instagram.com/explore/tags/${INSTAGRAM_HASHTAG}/?__a=1`);
-      return imagesData.data.graphql.hashtag.edge_hashtag_to_media.edges;
-       /** For a profile:
-       let imagesData = await axios.get('https://www.instagram.com/we_are_midway/?__a=1');
-       return imagesData.data.graphql.user.edge_owner_to_timeline_media.edges;
-       */
-    }
-    fetchImages().then(imagesData => {
-      const imagesList = imagesData.map(item => ({
-        src: item.node.thumbnail_src,
-        url: `https://www.instagram.com/p/${item.node.shortcode}`
-      }));
-      setImages(imagesList);
-    });
+    axios.get(`https://www.instagram.com/explore/tags/${INSTAGRAM_HASHTAG}/?__a=1`)
+      .then(response => {
+        console.log(response);
+        const imagesData = response.data.graphql.hashtag.edge_hashtag_to_media.edges 
+        const imagesList = imagesData.map(item => ({
+          id: item.node.id,
+          src: item.node.thumbnail_src,
+          url: `https://www.instagram.com/p/${item.node.shortcode}`
+        }));
+        setImages(imagesList);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   const showLoad = images.length > page * INSTAGRAM_LIMIT;
 
   return (
-    <div class="instagram">
-      <div class="container-slim v-horizontal-center fade-in" style={{ opacity: 1 }}>
+    <div className="instagram">
+      <div className="container-slim v-horizontal-center fade-in" style={{ opacity: 1 }}>
         <img
           src={INSTAGRAM_ICON}
           alt=""
-          class="mb-4"
+          className="mb-4"
         />
-        <h3 class="h3 mb-10">#midwayplaces</h3>
-        <div class="gallery-grid">
+        <h3 className="h3 mb-10">#midwayplaces</h3>
+        <div className="gallery-grid">
           {
             images.map((image, index) => (
               index < INSTAGRAM_LIMIT * page
                 ? (
-                  <a href={image.url} target="_blank">
+                  <a href={image.url} target="_blank" key={image.id} rel="noopener noreferrer">
                     <div
-                      class="gallery-item"
+                      className="gallery-item"
                       style={{ backgroundImage: `url("${image.src}")` }}
                     />
                   </a>

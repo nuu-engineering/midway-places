@@ -2,13 +2,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import Fuse from 'fuse.js';
-import { SimpleImg } from 'react-simple-img';
 import { useInView } from 'react-hook-inview';
 import { t as typy } from 'typy';
 
 import '../css/People.css';
+import { Card } from '../components/People';
 import { debounce } from '../utils/debounce';
-import { CLOSE, MORE, PERSON_EMPTY } from '../assets-urls';
+import { MORE } from '../assets-urls';
 import { PEOPLE_ORG } from '../constants';
 require('intersection-observer');
 
@@ -103,105 +103,11 @@ function App() {
             filtered.map((person, index) => (
               index < PEOPLE_LIMIT * page
               ? (
-                <div
-                  className={classnames("people-card w-dyn-item w-col w-col-3", { "cursor-pointer": !typy(person, 'description').isEmptyString })}
-                  role="listitem"
-                  key={typy(person, 'slug').safeString}
-                  onClick={(ev) => {
-                    if (!typy(person, 'description').isEmptyString) setSelected(index);
-                  }}
-                >
-                  <div className={classnames("people-bio", { show: selected === index })}>
-                    <img
-                      src={CLOSE}
-                      alt="Close"
-                      className="people-bio-close"
-                      onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); setSelected(-1); }}
-                    />
-                    <div className="people-bio-content">
-                      <div
-                        style={{ backgroundImage: `url(${typy(person, 'photo').safeString || PERSON_EMPTY})` }}
-                        className="people-bio-img"
-                      />
-                      <div className="people-bio-info">
-                        <div className="people-bio-info-title">{typy(person, 'job').safeString}</div>
-                        <div className="people-bio-info-name">{typy(person, 'name').safeString}</div>
-                        <img 
-                          className="people-bio-mob-img"
-                          src={typy(person, 'photo').safeString}
-                          alt={typy(person, 'name').safeString} 
-                         />
-                        <div className="people-bio-info-desc">
-                          {typy(person, 'description').safeString}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="h-horizontal-center mb-2">
-                    <div className="people-card-link w-inline-block">
-                      {
-                        typy(person, 'photo').isEmptyString 
-                          ? (
-                            <SimpleImg
-                              className="person-image"
-                              style={{ position: 'absolute' }}
-                              src={PERSON_EMPTY}
-                              alt={typy(person, 'name').safeString}
-                            />
-                          )
-                          : null
-                      }
-                      {
-                        !typy(person, 'photo').isEmptyString && typy(person, 'description').isEmptyString
-                          ? (
-                            <SimpleImg
-                              className="person-image"
-                              style={{ position: 'absolute' }}
-                              alt={typy(person, 'name').safeString}
-                              src={typy(person, 'photo').safeString}
-                              // srcSet={`${typy(person, 'photo').safeString.replaceAll('%20','%2520').replace(/(.*)\.(.*?)$/, "$1")}-p-500.jpeg 500vw, ${typy(person, 'photo').safeString} 688vw`}
-                              // src={`https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%20Garza%20-%202020%20(smaller).jpg`}
-                              // srcSet={`https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%2520Garza%2520-%25202020%2520(smaller)-p-500.jpeg 500w, https://global-uploads.webflow.com/5f6bc5ab851aeadfe3a90206/5f6bc5ab851aea3daaa904e6_Alex%20Garza%20-%202020%20(smaller).jpg 688w`}
-                            />
-                          )
-                          : null
-                      }
-                      {
-                        !typy(person, 'photo').isEmptyString && !typy(person, 'description').isEmptyString
-                          ? (
-                            <SimpleImg
-                              className="person-image scalable-img"
-                              style={{ position: 'absolute' }}
-                              src={typy(person, 'photo').safeString}
-                              alt={typy(person, 'name').safeString}
-                            />
-                          )
-                          : null
-                      }
-                    </div>
-                  </div>
-                  <div className="row no-wrap">
-                    <div className="col-10 col-padding-0">
-                      <p className="normal-text normal-height">{typy(person, 'name').safeString}</p>
-                      <p className="eyebrow-small text-uppercase text-steel">{typy(person, 'job').safeString}</p>
-                    </div>
-                    {
-                      typy(person, 'linkedIn').isEmptyString
-                        ? null
-                        : (
-                          <a 
-                            href={typy(person, 'linkedIn').safeString}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="linkedin-circle w-inline-block"
-                            onClick={(ev) => ev.stopPropagation() }
-                          >
-                            <p className="people-icon"></p>
-                          </a>
-                        )
-                    }
-                  </div>
-                </div>
+                <Card 
+                  {...person} 
+                  show={selected === typy(person, 'slug').safeString} 
+                  onSelect={() => setSelected(typy(person, 'slug').safeString)} 
+                  onClose={() => setSelected(null)} />
               )
               : null
             ))
