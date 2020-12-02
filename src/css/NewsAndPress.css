@@ -41,3 +41,11 @@
   height: 100%;
   width: 100%;
 }
+
+.instagram {
+  display: none;
+}
+
+.news-content + .instagram {
+  display: block;
+}

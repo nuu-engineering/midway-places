@@ -11,6 +11,7 @@ import {
   StoriesTab, AwardsTab,
 } from '../components/NewsAndPress';
 import '../css/NewsAndPress.css';
+import Elfsight from '../components/NewsAndPress/Elfsight';
 
 function App() {
   const [section, setSection] = React.useState(CURRENT_SECTION);
@@ -79,6 +80,7 @@ function App() {
         </>
       </Portal>
       { children }
+      <Elfsight />
     </>
   );
 }

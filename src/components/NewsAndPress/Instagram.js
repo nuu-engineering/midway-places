@@ -11,7 +11,6 @@ const Instagram = () => {
   React.useEffect(() => {
     axios.get(`https://www.instagram.com/explore/tags/${INSTAGRAM_HASHTAG}/?__a=1`)
       .then(response => {
-        console.log(response);
         const imagesData = response.data.graphql.hashtag.edge_hashtag_to_media.edges 
         const imagesList = imagesData.map(item => ({
           id: item.node.id,

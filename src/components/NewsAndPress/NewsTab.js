@@ -4,7 +4,8 @@ import classnames from 'classnames';
 import { t as typy } from 'typy';
 // import { debounce } from '../utils/debounce';
 import { MORE } from '../../assets-urls';
-import Instagram from './Instagram';
+// import Elfsight from './Elfsight';
+// import Instagram from './Instagram';
 
 const Tab = ({ list }) => {
   const [page, setPage] = React.useState(1);
@@ -126,7 +127,8 @@ const Tab = ({ list }) => {
         </div>
       </div>
 
-      <Instagram />
+      {/* <Instagram /> */}
+      {/* <Elfsight /> */}
     </>
   );
 };
