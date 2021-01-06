@@ -22,7 +22,7 @@ export const PEOPLE_ORG = [
   { value: 'Marketing + Communications', display: 'Marketing + Communications' },
   { value: 'Property Operations', display: 'Property Operations' },
   { value: 'Strategic Leasing + Advisory', display: 'Strategic Leasing + Advisory' },
-  { value: 'Team Relations', display: 'Team Relations' },
+  { value: 'Team Operations', display: 'Team Operations' },
 
   // { value: 'Midway Holdings', display: 'Midway Holdings' },
   // { value: 'Property Operations - General', display: 'Property Operations - General' },
