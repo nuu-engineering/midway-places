@@ -9,7 +9,13 @@ import '../css/People.css';
 import { Card } from '../components/People';
 import { debounce } from '../utils/debounce';
 import { MORE } from '../assets-urls';
-import { PEOPLE_ORG } from '../constants';
+import {
+  PEOPLE_ORG,
+  PEOPLE_ORG_BCT,
+  PEOPLE_ORG_DAI,
+  PEOPLE_ORG_MEM,
+  PEOPLE_ORG_LT,
+} from '../constants';
 require('intersection-observer');
 
 const fuse_options = {
@@ -65,8 +71,10 @@ function App() {
   const filtered = searched.filter((person) => (
     filter
       ? (person.org === filter && !person.inmemory) ||
-        (filter === 'Leadership Team' && person.leader) ||
-        (filter === 'In Memory' && person.inmemory) 
+        (filter === PEOPLE_ORG_BCT && person.bct) ||
+        (filter === PEOPLE_ORG_DAI && person.diversity) ||
+        (filter === PEOPLE_ORG_MEM && person.inmemory) ||
+        (filter === PEOPLE_ORG_LT && person.leader)
       : !person.inmemory
   ));
   const showLoad = filtered.length > page * PEOPLE_LIMIT;
